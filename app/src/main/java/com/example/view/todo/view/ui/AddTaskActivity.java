@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +34,10 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
     private Spinner spinnerSelectList;
 
     private ArrayAdapter<CharSequence> spinnerAdapter;
+
+    public static final String TEXT_KEY = "Text";
+    public static final String DATE_KEY = "Date";
+    public static final String CATEGORY_KEY = "Category";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,23 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
     private void saveTask() {
 
-        Strin
+        String text = editTextTask.getText().toString();
+        String date = editTextDate.getText().toString();
+        String category = textViewNameList.getText().toString();
+
+        if(text.trim().isEmpty() || (date.trim().isEmpty())) {
+
+            //TODO
+
+        } else {
+
+            Intent intent = new Intent();
+            intent.putExtra(text, TEXT_KEY);
+            intent.putExtra(date, DATE_KEY);
+            intent.putExtra(category, CATEGORY_KEY);
+
+            setResult(RESULT_OK, intent);
+        }
     }
 
     private void back() {
