@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -23,13 +24,15 @@ import com.example.view.todo.R;
 import java.text.DateFormat;
 import java.util.Calendar;
 
-public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
     private Toolbar toolbar;
 
     private EditText editTextTask, editTextDate;
     private TextView textViewNameList;
     private Spinner spinnerSelectList;
+
+    private ArrayAdapter<CharSequence> spinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +47,12 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         spinnerSelectList = findViewById(R.id.spinnerSelectList);
 
         editTextDate.setOnClickListener(this);
+        spinnerSelectList.setOnItemSelectedListener(this);
 
         setSupportActionBar(toolbar);
         setOptionsToolbar();
 
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.addTaskActivitySpinner,
+        spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.addTaskActivitySpinner,
                 android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -64,6 +68,42 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+    }
+
+    private void saveTask() {
+
+        Strin
+    }
+
+    private void back() {
+
+        String text = editTextTask.getText().toString();
+        String date = editTextDate.getText().toString();
+
+        if (text.trim().isEmpty() && (date.trim().isEmpty())) {
+
+            finish();
+
+        } else {
+
+            buildAlertDialog();
+        }
+    }
+
+    private void buildAlertDialog() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Warning!")
+                .setMessage("Are you sure you want to leave without saving?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     @Override
@@ -101,12 +141,10 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         int id = view.getId();
 
-        switch (id) {
+        if(id == R.id.editTextDate) {
 
-            case R.id.editTextDate:
-
-                DatePickerFragment datePickerDialog = new DatePickerFragment();
-                datePickerDialog.show(getSupportFragmentManager(), "Date Picker");
+            DatePickerFragment datePickerDialog = new DatePickerFragment();
+            datePickerDialog.show(getSupportFragmentManager(), "Date Picker");
         }
     }
 
@@ -124,38 +162,15 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         editTextDate.setText(currentDate);
     }
 
-    private void saveTask() {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+        String category = parent.getItemAtPosition(position).toString();
+        textViewNameList.setText(category);
     }
 
-    private void back() {
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
-        String text = editTextTask.getText().toString();
-        String date = editTextDate.getText().toString();
-
-        if (text.trim().isEmpty() && (date.trim().isEmpty())) {
-
-            finish();
-
-        } else {
-
-            buildAlertDialog();
-        }
-    }
-
-    private void buildAlertDialog() {
-
-        new AlertDialog.Builder(this)
-                .setTitle("Warning!")
-                .setMessage("Are you sure you want to leave without saving?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        finish();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
     }
 }

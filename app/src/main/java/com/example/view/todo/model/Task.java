@@ -2,7 +2,6 @@ package com.example.view.todo.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import java.sql.Date;
 
 @Entity(tableName = "task_table")
 public class Task {
