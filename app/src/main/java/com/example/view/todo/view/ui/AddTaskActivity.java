@@ -24,6 +24,7 @@ import com.example.view.todo.R;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class AddTaskActivity extends AppCompatActivity implements View.OnClickListener, DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
@@ -176,7 +177,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        String currentDate = DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH).format(calendar.getTime());
 
         editTextDate.setText(currentDate);
     }
