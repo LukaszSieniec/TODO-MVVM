@@ -1,6 +1,7 @@
 package com.example.view.todo.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.view.todo.R;
+import com.example.view.todo.view.adapter.TaskAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton buttonAddNewTask;
     private RecyclerView recyclerView;
     private LinearLayout linearLayoutActivityMain;
+
+    private TaskAdapter taskAdapter;
 
     private static final int ADD_TASK_REQUEST = 1;
 
@@ -30,6 +34,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         linearLayoutActivityMain = findViewById(R.id.linearLayoutActivityMain);
 
         buttonAddNewTask.setOnClickListener(this);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        taskAdapter = new TaskAdapter();
+
+
     }
 
     @Override

@@ -17,10 +17,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     private List<Task> allTasks;
 
-    public TaskAdapter(List<Task> allTasks) {
-        this.allTasks = allTasks;
-    }
-
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,6 +39,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public int getItemCount() {
         return allTasks.size();
+    }
+
+    public void setTasks(List<Task> allTasks) {
+        this.allTasks = allTasks;
     }
 
     static class TaskViewHolder extends RecyclerView.ViewHolder {

@@ -191,7 +191,5 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 }
