@@ -30,8 +30,8 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
     private Toolbar toolbar;
 
     private EditText editTextTask, editTextDate;
-    private TextView textViewNameList;
-    private Spinner spinnerSelectList;
+    private TextView textViewSelectCategory;
+    private Spinner spinnerSelectCategory;
 
     private ArrayAdapter<CharSequence> spinnerAdapter;
 
@@ -48,11 +48,11 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         editTextTask = findViewById(R.id.editTextTask);
         editTextDate = findViewById(R.id.editTextDate);
-        textViewNameList = findViewById(R.id.textViewNameList);
-        spinnerSelectList = findViewById(R.id.spinnerSelectList);
+        textViewSelectCategory = findViewById(R.id.textViewSelectCategory);
+        spinnerSelectCategory = findViewById(R.id.spinnerSelectCategory);
 
         editTextDate.setOnClickListener(this);
-        spinnerSelectList.setOnItemSelectedListener(this);
+        spinnerSelectCategory.setOnItemSelectedListener(this);
 
         setSupportActionBar(toolbar);
         setOptionsToolbar();
@@ -61,7 +61,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                 android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinnerSelectList.setAdapter(spinnerAdapter);
+        spinnerSelectCategory.setAdapter(spinnerAdapter);
 
     }
 
@@ -79,7 +79,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         String text = editTextTask.getText().toString();
         String date = editTextDate.getText().toString();
-        String category = textViewNameList.getText().toString();
+        String category = textViewSelectCategory.getText().toString();
 
         if(text.trim().isEmpty() || (date.trim().isEmpty())) {
 
@@ -187,7 +187,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         String category = parent.getItemAtPosition(position).toString();
-        textViewNameList.setText(category);
+        textViewSelectCategory.setText(category);
     }
 
     @Override

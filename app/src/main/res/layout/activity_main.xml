@@ -35,6 +35,7 @@
                 app:srcCompat="@drawable/no_tasks_to_complete" />
 
             <TextView
+                android:id="@+id/textViewInformationAboutTasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

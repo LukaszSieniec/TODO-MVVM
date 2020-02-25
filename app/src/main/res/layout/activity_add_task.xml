@@ -21,7 +21,7 @@
         android:paddingRight="32dp">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewShowCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="What task do you have to do?"
@@ -103,7 +103,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textViewNameList"
+                android:id="@+id/textViewSelectCategory"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.7"
@@ -112,7 +112,7 @@
                 android:textSize="22sp" />
 
             <Spinner
-                android:id="@+id/spinnerSelectList"
+                android:id="@+id/spinnerSelectCategory"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.2" />
