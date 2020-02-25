@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="No tasks to complete ..."
+                android:text="@string/textViewInformationAboutTasks"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="20sp"
                 android:textStyle="bold|italic" />

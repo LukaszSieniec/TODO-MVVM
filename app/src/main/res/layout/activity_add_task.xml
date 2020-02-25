@@ -21,10 +21,10 @@
         android:paddingRight="32dp">
 
         <TextView
-            android:id="@+id/textViewShowCategory"
+            android:id="@+id/textViewWhatTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="What task do you have to do?"
+            android:text="@string/textViewWhatTask"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.9"
                 android:ems="10"
-                android:hint="Enter the task"
+                android:hint="@string/editTextTask"
                 android:inputType="textPersonName"
                 android:textSize="20sp" />
 
@@ -54,11 +54,11 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewWhenTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="When do you have to do the task?"
+            android:text="@string/textViewWhenTask"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -75,7 +75,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.9"
                 android:ems="10"
-                android:hint="Enter the date"
+                android:hint="@string/editTextDate"
                 android:focusable="false"
                 android:textSize="20sp" />
 
@@ -88,11 +88,11 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewSelectList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Select a list"
+            android:text="@string/textViewSelectList"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />

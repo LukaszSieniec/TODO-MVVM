@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">TODO</string>
 
+    <string name="textViewInformationAboutTasks">No tasks to complete ...</string>
+    <string name="textViewWhatTask">What task do you have to do?</string>
+    <string name="editTextTask">Enter the task</string>
+    <string name="textViewWhenTask">When do you have to do the task?</string>
+    <string name="editTextDate">Enter the date</string>
+    <string name="textViewSelectList">Select a list</string>
+
     <string-array name="addTaskActivitySpinner">
         <item>Job</item>
         <item>Shopping</item>
