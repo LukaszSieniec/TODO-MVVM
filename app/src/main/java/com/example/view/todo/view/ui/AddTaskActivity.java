@@ -88,9 +88,9 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         } else {
 
             Intent intent = new Intent();
-            intent.putExtra(text, TEXT_KEY);
-            intent.putExtra(date, DATE_KEY);
-            intent.putExtra(category, CATEGORY_KEY);
+            intent.putExtra(TEXT_KEY, text);
+            intent.putExtra(DATE_KEY, date);
+            intent.putExtra(CATEGORY_KEY, category);
 
             setResult(RESULT_OK, intent);
         }
