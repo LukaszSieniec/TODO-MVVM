@@ -3,17 +3,16 @@ package com.example.view.todo.view.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -48,6 +47,12 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         setSupportActionBar(toolbar);
         setOptionsToolbar();
+
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.addTaskActivitySpinner,
+                android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerSelectList.setAdapter(spinnerAdapter);
 
     }
 
@@ -128,7 +133,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         String text = editTextTask.getText().toString();
         String date = editTextDate.getText().toString();
 
-        if(text.trim().isEmpty() && (date.trim().isEmpty())) {
+        if (text.trim().isEmpty() && (date.trim().isEmpty())) {
 
             finish();
 
