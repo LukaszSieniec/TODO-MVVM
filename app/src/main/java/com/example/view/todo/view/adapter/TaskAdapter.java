@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.view.todo.R;
 import com.example.view.todo.model.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private List<Task> allTasks;
+    private List<Task> allTasks = new ArrayList<>();
 
     @NonNull
     @Override
@@ -33,7 +34,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Task currentTask = allTasks.get(position);
 
         holder.textViewTask.setText(currentTask.getText());
-        holder.textViewDate.setText(currentTask.getDate().toString());
+        holder.textViewDate.setText(currentTask.getDate());
     }
 
     @Override

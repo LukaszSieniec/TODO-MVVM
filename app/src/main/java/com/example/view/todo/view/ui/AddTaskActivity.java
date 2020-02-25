@@ -81,11 +81,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         String date = editTextDate.getText().toString();
         String category = textViewSelectCategory.getText().toString();
 
-        if(text.trim().isEmpty() || (date.trim().isEmpty())) {
-
-            //TODO
-
-        } else {
+        if(!text.trim().isEmpty() && (!date.trim().isEmpty())) {
 
             Intent data = new Intent();
             data.putExtra(TEXT_KEY, text);
@@ -94,6 +90,8 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
             setResult(RESULT_OK, data);
         }
+
+        finish();
     }
 
     private void back() {
