@@ -18,7 +18,7 @@ public interface TaskDao {
     void delete(Task task);
 
     @Query("SELECT * FROM task_table WHERE category = 'Job'")
-    LiveData<List<Task>> getAllWork();
+    LiveData<List<Task>> getAllJob();
 
     @Query("SELECT * FROM task_table WHERE category = 'Shopping'")
     LiveData<List<Task>> getAllShopping();

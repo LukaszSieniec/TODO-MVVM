@@ -1,6 +1,7 @@
 package com.example.view.todo.view.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.example.view.todo.R;
 import com.example.view.todo.view.adapter.TaskAdapter;
+import com.example.view.todo.viewmodel.ViewModelMainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout linearLayoutActivityMain;
 
     private TaskAdapter taskAdapter;
+    private ViewModelMainActivity viewModelMainActivity;
 
     private static final int ADD_TASK_REQUEST = 1;
 
@@ -39,7 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setHasFixedSize(true);
 
         taskAdapter = new TaskAdapter();
+        recyclerView.setAdapter(taskAdapter);
 
+        viewModelMainActivity = new ViewModelProvider(this).get(ViewModelMainActivity.class);
+        viewModelMainActivity.getAllJob()
 
     }
 

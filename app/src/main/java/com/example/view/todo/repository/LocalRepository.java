@@ -17,7 +17,7 @@ public class LocalRepository {
 
     private TaskDao taskDao;
 
-    private LiveData<List<Task>> allWork;
+    private LiveData<List<Task>> allJob;
     private LiveData<List<Task>> allShopping;
     private LiveData<List<Task>> allOther;
 
@@ -27,7 +27,7 @@ public class LocalRepository {
 
         taskDao = taskDatabase.taskDao();
 
-        allWork = taskDao.getAllWork();
+        allJob = taskDao.getAllJob();
         allShopping = taskDao.getAllShopping();
         allOther = taskDao.getAllOther();
     }
@@ -40,8 +40,8 @@ public class LocalRepository {
         new DeleteTaskAsyncTask(taskDao).execute(task);
     }
 
-    public LiveData<List<Task>> getAllWork() {
-        return allWork;
+    public LiveData<List<Task>> getAllJob() {
+        return allJob;
     }
 
     public LiveData<List<Task>> getAllShopping() {
