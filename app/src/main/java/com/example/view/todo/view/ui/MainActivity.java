@@ -60,14 +60,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(tasks.size() == 0) {
 
                     linearLayoutActivityMain.setVisibility(View.VISIBLE);
-                    taskAdapter.notifyDataSetChanged();
 
                 } else {
 
                     linearLayoutActivityMain.setVisibility(View.INVISIBLE);
-                    taskAdapter.setTasks(tasks);
-                    taskAdapter.notifyDataSetChanged();
                 }
+
+                taskAdapter.setTasks(tasks);
             }
         });
     }
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String date = data.getStringExtra(DATE_KEY);
             String category = data.getStringExtra(CATEGORY_KEY);
 
-            Task task = new Task(text, date, category);
+            Task task = new Task(text, category, date);
             viewModelMainActivity.insert(task);
 
             Toast.makeText(this, "Task saved!", Toast.LENGTH_LONG).show();
