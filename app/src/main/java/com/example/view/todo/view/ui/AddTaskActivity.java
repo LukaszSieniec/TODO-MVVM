@@ -7,6 +7,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -78,10 +79,12 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.save_task:
 
                 saveTask();
+                return true;
 
             case android.R.id.home:
 
-                finish();
+                back();
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -122,5 +125,32 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
     private void back() {
 
+        String text = editTextTask.getText().toString();
+        String date = editTextDate.getText().toString();
+
+        if(text.trim().isEmpty() && (date.trim().isEmpty())) {
+
+            finish();
+
+        } else {
+
+            buildAlertDialog();
+        }
+    }
+
+    private void buildAlertDialog() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Warning!")
+                .setMessage("Are you sure you want to leave without saving?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
