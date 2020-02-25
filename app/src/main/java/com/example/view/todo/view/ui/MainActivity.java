@@ -1,0 +1,47 @@
+package com.example.view.todo.view.ui;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+
+import com.example.view.todo.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private FloatingActionButton buttonAddNewTask;
+    private RecyclerView recyclerView;
+    private LinearLayout linearLayoutActivityMain;
+
+    private static final int ADD_TASK_REQUEST = 1;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        buttonAddNewTask = findViewById(R.id.buttonAddNewTask);
+        recyclerView = findViewById(R.id.recyclerView);
+        linearLayoutActivityMain = findViewById(R.id.linearLayoutActivityMain);
+
+        buttonAddNewTask.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        int id = view.getId();
+
+        if (id == R.id.buttonAddNewTask) {
+
+            Intent intent = new Intent(this, AddTaskActivity.class);
+            startActivityForResult(intent, ADD_TASK_REQUEST);
+        }
+    }
+}
+
