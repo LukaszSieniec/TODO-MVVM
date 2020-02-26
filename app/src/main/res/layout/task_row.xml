@@ -11,23 +11,22 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#40AAAAAA"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <CheckBox
-            android:id="@+id/checkBox2"
+            android:id="@+id/checkBoxTask"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/checkBox2"
-            android:background="#40AAAAAA"
+            android:layout_toRightOf="@+id/checkBoxTask"
             android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp">
+            android:paddingLeft="8dp">
 
             <TextView
                 android:id="@+id/textViewTask"
@@ -36,7 +35,7 @@
                 android:layout_weight="1"
                 android:text="Job"
                 android:textColor="@android:color/black"
-                android:textSize="20sp" />
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/textViewDate"
