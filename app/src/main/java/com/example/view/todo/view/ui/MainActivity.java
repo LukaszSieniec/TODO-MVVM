@@ -11,10 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.view.todo.R;
 import com.example.view.todo.model.Task;
+import com.example.view.todo.view.adapter.CustomSpinnerAdapter;
 import com.example.view.todo.view.adapter.TaskAdapter;
 import com.example.view.todo.viewmodel.ViewModelMainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,11 +30,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton buttonAddNewTask;
     private RecyclerView recyclerView;
     private LinearLayout linearLayoutActivityMain;
+    private Spinner spinner;
 
+    private CustomSpinnerAdapter customSpinnerAdapter;
     private TaskAdapter taskAdapter;
     private ViewModelMainActivity viewModelMainActivity;
 
     private static final int ADD_TASK_REQUEST_CODE = 1;
+    private static final String CATEGORIES [] = {"Job", "Shopping", "Other"};
+    private static final Integer IMAGE = R.drawable.ic_format_list_bulleted;
 
 
     @Override
@@ -43,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonAddNewTask = findViewById(R.id.buttonAddNewTask);
         recyclerView = findViewById(R.id.recyclerView);
         linearLayoutActivityMain = findViewById(R.id.linearLayoutActivityMain);
+        spinner = findViewById(R.id.spinnerShowCategory);
 
         buttonAddNewTask.setOnClickListener(this);
 
@@ -51,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         taskAdapter = new TaskAdapter();
         recyclerView.setAdapter(taskAdapter);
+
+        customSpinnerAdapter = new CustomSpinnerAdapter(this, CATEGORIES, IMAGE);
+        spinner.setAdapter(customSpinnerAdapter);
 
         viewModelMainActivity = new ViewModelProvider(this).get(ViewModelMainActivity.class);
         viewModelMainActivity.getAllJob().observe(this, new Observer<List<Task>>() {
