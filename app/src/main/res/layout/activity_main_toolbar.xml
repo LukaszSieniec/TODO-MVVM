@@ -10,16 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewShowCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingRight="8dp"
-            android:text="Job"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
         <Spinner
             android:id="@+id/spinnerShowCategory"
             android:layout_width="wrap_content"
