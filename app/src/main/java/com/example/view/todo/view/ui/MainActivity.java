@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
         taskAdapter = new TaskAdapter();
         recyclerView.setAdapter(taskAdapter);
 
@@ -77,6 +77,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
 
                 taskAdapter.setTasks(tasks);
+            }
+        });
+
+        taskAdapter.setOnItemClickListener(new TaskAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Task task) {
+
+                viewModelMainActivity.delete(task);
             }
         });
     }
