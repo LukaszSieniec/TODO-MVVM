@@ -15,6 +15,10 @@ import static com.example.view.todo.data.TaskDatabase.getInstance;
 
 public class LocalRepository {
 
+    private static final String JOB_CATEGORY = "Job";
+    private static final String SHOPPING_CATEGORY = "Shopping";
+    private static final String OTHER_CATEGORY = "Other";
+
     private TaskDao taskDao;
 
     private LiveData<List<Task>> allJob;
@@ -27,9 +31,9 @@ public class LocalRepository {
 
         taskDao = taskDatabase.taskDao();
 
-        allJob = taskDao.getAllJob();
-        allShopping = taskDao.getAllShopping();
-        allOther = taskDao.getAllOther();
+        allJob = taskDao.getAllTasks(JOB_CATEGORY);
+        allShopping = taskDao.getAllTasks(SHOPPING_CATEGORY);
+        allOther = taskDao.getAllTasks(OTHER_CATEGORY);
     }
 
     public void insert(Task task) {
