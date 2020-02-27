@@ -1,6 +1,5 @@
 package com.example.view.todo.view.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,17 @@ import com.example.view.todo.model.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.view.todo.view.ui.MainActivity.*;
+
+
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private List<Task> allTasks = new ArrayList<>();
+    private List<Task> currentTasks = new ArrayList<>();
+
+    private List<Task> allJobTasks = new ArrayList<>();
+    private List<Task> allShoppingTasks = new ArrayList<>();
+    private List<Task> allOtherTasks = new ArrayList<>();
+
     private OnItemClickListener onItemClickListener;
 
     @NonNull
@@ -34,7 +41,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
 
-        Task currentTask = allTasks.get(position);
+        Task currentTask = currentTasks.get(position);
 
         holder.textViewTask.setText(currentTask.getText());
         holder.textViewDate.setText(currentTask.getDate());
@@ -42,15 +49,58 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public int getItemCount() {
-        return allTasks.size();
+        return currentTasks.size();
     }
 
-    public void setTasks(List<Task> allTasks) {
-        this.allTasks = allTasks;
+    public void setCurrentTasks(String category) {
+
+        switch (category) {
+            case JOB_CATEGORY:
+                this.currentTasks = allJobTasks;
+                break;
+
+            case SHOPPING_CATEGORY:
+                this.currentTasks = allShoppingTasks;
+                break;
+
+            case OTHER_CATEGORY:
+                this.currentTasks = allOtherTasks;
+                break;
+        }
+
         notifyDataSetChanged();
     }
 
-     class TaskViewHolder extends RecyclerView.ViewHolder {
+    public List<Task> getCurrentTasks(String category) {
+
+        switch (category) {
+            case JOB_CATEGORY:
+                return allJobTasks;
+
+            case SHOPPING_CATEGORY:
+                return allShoppingTasks;
+
+            case OTHER_CATEGORY:
+                return allOtherTasks;
+
+            default:
+                return null;
+        }
+    }
+
+    public void setAllJobTasks(List<Task> allJobTasks) {
+        this.allJobTasks = allJobTasks;
+    }
+
+    public void setAllShoppingTasks(List<Task> allShoppingTasks) {
+        this.allShoppingTasks = allShoppingTasks;
+    }
+
+    public void setAllOtherTasks(List<Task> allOtherTasks) {
+        this.allOtherTasks = allOtherTasks;
+    }
+
+    class TaskViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textViewTask;
         private TextView textViewDate;
@@ -70,11 +120,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
                     int position = getAdapterPosition();
                     int id = view.getId();
 
-                    if((id == R.id.checkBoxTask) && (checkBox.isChecked())) {
+                    if ((id == R.id.checkBoxTask) && (checkBox.isChecked())) {
 
-                        if(onItemClickListener != null) {
+                        if (onItemClickListener != null) {
 
-                            onItemClickListener.onItemClick(allTasks.get(position));
+                            onItemClickListener.onItemClick(currentTasks.get(position));
                         }
                     }
 

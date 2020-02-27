@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,11 +22,12 @@ import com.example.view.todo.view.adapter.TaskAdapter;
 import com.example.view.todo.viewmodel.ViewModelMainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.view.todo.view.ui.AddTaskActivity.*;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Spinner.OnItemSelectedListener {
 
     private FloatingActionButton buttonAddNewTask;
     private RecyclerView recyclerView;
@@ -37,8 +38,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TaskAdapter taskAdapter;
     private ViewModelMainActivity viewModelMainActivity;
 
+    private String currentCategory = "";
+
     private static final int ADD_TASK_REQUEST_CODE = 1;
-    private static final String CATEGORIES [] = {"Job", "Shopping", "Other"};
+
+    public static final String JOB_CATEGORY = "Job";
+    public static final String SHOPPING_CATEGORY = "Shopping";
+    public static final String OTHER_CATEGORY = "Other";
+
+    private static final String CATEGORIES [] = {JOB_CATEGORY, SHOPPING_CATEGORY, OTHER_CATEGORY};
     private static final Integer IMAGE = R.drawable.ic_format_list_bulleted;
 
 
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinner = findViewById(R.id.spinnerShowCategory);
 
         buttonAddNewTask.setOnClickListener(this);
+        spinner.setOnItemSelectedListener(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -62,23 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         customSpinnerAdapter = new CustomSpinnerAdapter(this, CATEGORIES, IMAGE);
         spinner.setAdapter(customSpinnerAdapter);
 
-        viewModelMainActivity = new ViewModelProvider(this).get(ViewModelMainActivity.class);
-        viewModelMainActivity.getAllJob().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(List<Task> tasks) {
-
-                if(tasks.size() == 0) {
-
-                    linearLayoutActivityMain.setVisibility(View.VISIBLE);
-
-                } else {
-
-                    linearLayoutActivityMain.setVisibility(View.INVISIBLE);
-                }
-
-                taskAdapter.setTasks(tasks);
-            }
-        });
+        getAllTasks();
 
         taskAdapter.setOnItemClickListener(new TaskAdapter.OnItemClickListener() {
             @Override
@@ -87,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewModelMainActivity.delete(task);
             }
         });
+
     }
 
     @Override
@@ -119,6 +113,80 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
 
             //TODO
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        currentCategory = parent.getItemAtPosition(position).toString();
+
+        if(taskAdapter.getCurrentTasks(currentCategory).size() == 0) {
+
+            linearLayoutActivityMain.setVisibility(View.VISIBLE);
+
+        } else {
+
+            linearLayoutActivityMain.setVisibility(View.INVISIBLE);
+        }
+
+        taskAdapter.setCurrentTasks(currentCategory);
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {}
+
+    private void getAllTasks() {
+
+        viewModelMainActivity = new ViewModelProvider(this).get(ViewModelMainActivity.class);
+        viewModelMainActivity.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+
+                List<Task> allJobTasks = new ArrayList<>();
+                List<Task> allShoppingTasks = new ArrayList<>();
+                List<Task> allOtherTasks = new ArrayList<>();
+
+                for(int i = 0; i < tasks.size(); i ++) {
+
+                    if(tasks.get(i).getCategory().equals(JOB_CATEGORY)) {
+
+                        allJobTasks.add(tasks.get(i));
+
+                    } else if (tasks.get(i).getCategory().equals(SHOPPING_CATEGORY)) {
+
+                        allShoppingTasks.add(tasks.get(i));
+
+                    } else if(tasks.get(i).getCategory().equals(OTHER_CATEGORY)) {
+
+                        allOtherTasks.add(tasks.get(i));
+                    }
+                }
+
+                taskAdapter.setAllJobTasks(allJobTasks);
+                taskAdapter.setAllShoppingTasks(allShoppingTasks);
+                taskAdapter.setAllOtherTasks(allOtherTasks);
+
+                showOrHideImageAndText(allJobTasks, JOB_CATEGORY);
+                showOrHideImageAndText(allShoppingTasks, SHOPPING_CATEGORY);
+                showOrHideImageAndText(allOtherTasks, OTHER_CATEGORY);
+
+                taskAdapter.setCurrentTasks(currentCategory);
+
+            }
+        });
+    }
+
+    private void showOrHideImageAndText(List<Task> tasks, String currentCategory) {
+
+        if((tasks.size() == 0) && (this.currentCategory.equals(currentCategory))) {
+
+            linearLayoutActivityMain.setVisibility(View.VISIBLE);
+
+        } else if ((tasks.size() > 0) && (this.currentCategory.equals(currentCategory))){
+
+            linearLayoutActivityMain.setVisibility(View.INVISIBLE);
         }
     }
 }

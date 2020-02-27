@@ -15,18 +15,14 @@ public class ViewModelMainActivity extends AndroidViewModel {
 
     private LocalRepository localRepository;
 
-    private LiveData<List<Task>> allJob;
-    private LiveData<List<Task>> allShopping;
-    private LiveData<List<Task>> allOther;
+    private LiveData<List<Task>> allTasks;
 
     public ViewModelMainActivity(@NonNull Application application) {
         super(application);
 
         localRepository = new LocalRepository(application);
 
-        allJob = localRepository.getAllJob();
-        allShopping = localRepository.getAllShopping();
-        allOther = localRepository.getAllOther();
+        allTasks = localRepository.getAllTasks();
     }
 
     public void insert(Task task) {
@@ -37,15 +33,7 @@ public class ViewModelMainActivity extends AndroidViewModel {
         localRepository.delete(task);
     }
 
-    public LiveData<List<Task>> getAllJob() {
-        return allJob;
-    }
-
-    public LiveData<List<Task>> getAllShopping() {
-        return allShopping;
-    }
-
-    public LiveData<List<Task>> getAllOther() {
-        return allOther;
+    public LiveData<List<Task>> getAllTasks() {
+        return allTasks;
     }
 }

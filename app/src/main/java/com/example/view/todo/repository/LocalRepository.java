@@ -15,15 +15,9 @@ import static com.example.view.todo.data.TaskDatabase.getInstance;
 
 public class LocalRepository {
 
-    private static final String JOB_CATEGORY = "Job";
-    private static final String SHOPPING_CATEGORY = "Shopping";
-    private static final String OTHER_CATEGORY = "Other";
-
     private TaskDao taskDao;
 
-    private LiveData<List<Task>> allJob;
-    private LiveData<List<Task>> allShopping;
-    private LiveData<List<Task>> allOther;
+    private LiveData<List<Task>> allTasks;
 
     public LocalRepository(Application application) {
 
@@ -31,9 +25,7 @@ public class LocalRepository {
 
         taskDao = taskDatabase.taskDao();
 
-        allJob = taskDao.getAllTasks(JOB_CATEGORY);
-        allShopping = taskDao.getAllTasks(SHOPPING_CATEGORY);
-        allOther = taskDao.getAllTasks(OTHER_CATEGORY);
+        allTasks = taskDao.getAllTasks();
     }
 
     public void insert(Task task) {
@@ -44,16 +36,8 @@ public class LocalRepository {
         new DeleteTaskAsyncTask(taskDao).execute(task);
     }
 
-    public LiveData<List<Task>> getAllJob() {
-        return allJob;
-    }
-
-    public LiveData<List<Task>> getAllShopping() {
-        return allShopping;
-    }
-
-    public LiveData<List<Task>> getAllOther() {
-        return allOther;
+    public LiveData<List<Task>> getAllTasks() {
+        return allTasks;
     }
 
     private static class InsertTaskAsyncTask extends AsyncTask<Task, Void, Void> {
