@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Task task = new Task(text, category, date);
             viewModelMainActivity.insert(task);
 
-            Toast.makeText(this, "Task saved!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Task saved in " + category + " list!", Toast.LENGTH_LONG).show();
 
         } else {
 
