@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.view.todo.R;
 import com.example.view.todo.model.Task;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static com.example.view.todo.view.ui.MainActivity.*;
 
@@ -44,7 +47,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Task currentTask = currentTasks.get(position);
 
         holder.textViewTask.setText(currentTask.getText());
-        holder.textViewDate.setText(currentTask.getDate());
+
+        if (currentTask.getDate().equals(DateFormat.getDateInstance(DateFormat.FULL, Locale.ENGLISH).format(new Date()))) {
+
+            holder.textViewDate.setText("Today");
+
+        } else {
+
+            holder.textViewDate.setText(currentTask.getDate());
+        }
+
     }
 
     @Override
