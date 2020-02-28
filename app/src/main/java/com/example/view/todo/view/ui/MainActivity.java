@@ -1,12 +1,14 @@
 package com.example.view.todo.view.ui;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -112,7 +114,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else {
 
-            //TODO
+            new AlertDialog.Builder(this)
+                    .setTitle("Unsaved task!")
+                    .setMessage("You didn't enter all the information. Do you want to retry the operation?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
+                            startActivityForResult(intent, ADD_TASK_REQUEST_CODE);
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+
         }
     }
 
