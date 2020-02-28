@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -101,20 +102,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == ADD_TASK_REQUEST_CODE) {
+        if((requestCode == ADD_TASK_REQUEST_CODE) && (resultCode == RESULT_OK)) {
 
-            if(resultCode == RESULT_OK) {
+            String text = data.getStringExtra(TEXT_KEY);
+            String date = data.getStringExtra(DATE_KEY);
+            String category = data.getStringExtra(CATEGORY_KEY);
 
-                String text = data.getStringExtra(TEXT_KEY);
-                String date = data.getStringExtra(DATE_KEY);
-                String category = data.getStringExtra(CATEGORY_KEY);
+            if(!text.trim().isEmpty() && (!date.trim().isEmpty())) {
+
+                linearLayoutActivityMain.setVisibility(View.INVISIBLE);
 
                 Task task = new Task(text, category, date);
                 viewModelMainActivity.insert(task);
 
                 Toast.makeText(this, "Task saved in " + category + " list!", Toast.LENGTH_LONG).show();
 
-            } else if(resultCode == RESULT_CANCELED) {
+            } else {
 
                 buildAlertDialog();
             }

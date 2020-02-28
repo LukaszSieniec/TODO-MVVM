@@ -82,19 +82,12 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         String date = editTextDate.getText().toString();
         String category = textViewSelectCategory.getText().toString();
 
-        if(!text.trim().isEmpty() && (!date.trim().isEmpty())) {
+        Intent data = new Intent();
+        data.putExtra(TEXT_KEY, text);
+        data.putExtra(DATE_KEY, date);
+        data.putExtra(CATEGORY_KEY, category);
 
-            Intent data = new Intent();
-            data.putExtra(TEXT_KEY, text);
-            data.putExtra(DATE_KEY, date);
-            data.putExtra(CATEGORY_KEY, category);
-
-            setResult(RESULT_OK, data);
-
-        } else {
-
-            setResult(RESULT_CANCELED);
-        }
+        setResult(RESULT_OK, data);
 
         finish();
     }
@@ -106,8 +99,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         if (text.trim().isEmpty() && (date.trim().isEmpty())) {
 
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+            finish();
 
         } else {
 
@@ -124,8 +116,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Intent intent = new Intent(AddTaskActivity.this, MainActivity.class);
-                        startActivity(intent);
+                        finish();
                     }
                 })
                 .setNegativeButton("No", null)
