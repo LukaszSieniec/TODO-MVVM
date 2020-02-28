@@ -90,6 +90,10 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
             data.putExtra(CATEGORY_KEY, category);
 
             setResult(RESULT_OK, data);
+
+        } else {
+
+            setResult(RESULT_CANCELED);
         }
 
         finish();
@@ -102,7 +106,8 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         if (text.trim().isEmpty() && (date.trim().isEmpty())) {
 
-            finish();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
         } else {
 
@@ -119,7 +124,8 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        finish();
+                        Intent intent = new Intent(AddTaskActivity.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton("No", null)

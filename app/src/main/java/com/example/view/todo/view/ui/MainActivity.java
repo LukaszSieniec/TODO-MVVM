@@ -101,20 +101,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if((requestCode == ADD_TASK_REQUEST_CODE) && (resultCode == RESULT_OK)) {
+        if(requestCode == ADD_TASK_REQUEST_CODE) {
 
-            String text = data.getStringExtra(TEXT_KEY);
-            String date = data.getStringExtra(DATE_KEY);
-            String category = data.getStringExtra(CATEGORY_KEY);
+            if(resultCode == RESULT_OK) {
 
-            Task task = new Task(text, category, date);
-            viewModelMainActivity.insert(task);
+                String text = data.getStringExtra(TEXT_KEY);
+                String date = data.getStringExtra(DATE_KEY);
+                String category = data.getStringExtra(CATEGORY_KEY);
 
-            Toast.makeText(this, "Task saved in " + category + " list!", Toast.LENGTH_LONG).show();
+                Task task = new Task(text, category, date);
+                viewModelMainActivity.insert(task);
 
-        } else {
+                Toast.makeText(this, "Task saved in " + category + " list!", Toast.LENGTH_LONG).show();
 
-            buildAlertDialog();
+            } else if(resultCode == RESULT_CANCELED) {
+
+                buildAlertDialog();
+            }
         }
     }
 
