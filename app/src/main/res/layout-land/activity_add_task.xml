@@ -17,7 +17,7 @@
         android:layout_below="@+id/activityAddTaskToolbar"
         android:orientation="vertical"
         android:paddingLeft="@dimen/thirtyTwoIntuit"
-        android:paddingTop="@dimen/thirtyTwoIntuit"
+        android:paddingTop="@dimen/sixteenIntuit"
         android:paddingRight="@dimen/thirtyTwoIntuit">
 
         <TextView
@@ -58,10 +58,10 @@
             android:id="@+id/textViewWhenTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/thirtyTwoIntuit"
+            android:layout_marginTop="@dimen/sixteenIntuit"
             android:text="@string/textViewWhenTask"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
+            android:textSize="@dimen/sixteenIntuit"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -93,10 +93,10 @@
             android:id="@+id/textViewSelectList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/thirtyTwoIntuit"
+            android:layout_marginTop="@dimen/sixteenIntuit"
             android:text="@string/textViewSelectList"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
+            android:textSize="@dimen/sixteenIntuit"
             android:textStyle="bold" />
 
         <LinearLayout
