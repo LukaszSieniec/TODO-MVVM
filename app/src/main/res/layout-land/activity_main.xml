@@ -33,12 +33,13 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
                 android:visibility="visible"
-                app:srcCompat="@drawable/no_tasks_to_complete" />
+                app:srcCompat="@drawable/no_tasks_to_complete2" />
 
             <TextView
                 android:id="@+id/textViewInformationAboutTasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/thirtyTwoIntuit"
                 android:gravity="center"
                 android:text="@string/textViewInformationAboutTasks"
                 android:textColor="@android:color/darker_gray"

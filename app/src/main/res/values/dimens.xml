@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="eightIntuit"> @dimen/_6sdp</dimen>                           <!-- 8dp-->
+    <dimen name="sixteenIntuit"> @dimen/_12sdp</dimen>                        <!-- 16dp-->
+    <dimen name="twentyIntuit"> @dimen/_15sdp</dimen>                         <!-- 20dp-->
+    <dimen name="twentyTwoIntuit"> @dimen/_17sdp</dimen>                      <!-- 22dp-->
+    <dimen name="thirtyTwoIntuit"> @dimen/_25sdp</dimen>                      <!-- 32dp-->
+    <dimen name="fortyIntuit"> @dimen/_31sdp</dimen>                          <!-- 40dp-->
+    <dimen name="twoHundredIntuit"> @dimen/_154sdp</dimen>                    <!-- 200dp-->
+
+</resources>

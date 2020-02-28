@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="@dimen/fortyIntuit"
     android:background="@color/colorPrimary"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:paddingLeft="@dimen/eightIntuit"
+    android:paddingRight="@dimen/eightIntuit">
 
     <ImageView
         android:id="@+id/imageViewSpinner"
@@ -18,11 +18,11 @@
         android:id="@+id/textViewCategorySpinner"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="@dimen/eightIntuit"
         android:gravity="center"
         android:text="Job"
         android:textColor="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="@dimen/twentyIntuit"
         android:textStyle="bold" />
 
 </LinearLayout>

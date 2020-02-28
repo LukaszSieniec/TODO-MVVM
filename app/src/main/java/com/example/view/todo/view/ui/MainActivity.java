@@ -114,20 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else {
 
-            new AlertDialog.Builder(this)
-                    .setTitle("Unsaved task!")
-                    .setMessage("You didn't enter all the information. Do you want to retry the operation?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
-                            startActivityForResult(intent, ADD_TASK_REQUEST_CODE);
-                        }
-                    })
-                    .setNegativeButton("No", null)
-                    .show();
-
+            buildAlertDialog();
         }
     }
 
@@ -146,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         taskAdapter.setCurrentTasks(currentCategory);
-
     }
 
     @Override
@@ -203,6 +189,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             linearLayoutActivityMain.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void buildAlertDialog() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Unsaved task!")
+                .setMessage("You didn't enter all the information. Do you want to retry the operation?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
+                        startActivityForResult(intent, ADD_TASK_REQUEST_CODE);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }
 

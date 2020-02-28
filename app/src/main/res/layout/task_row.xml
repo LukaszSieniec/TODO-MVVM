@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginLeft="@dimen/sixteenIntuit"
+    android:layout_marginTop="@dimen/sixteenIntuit"
+    android:layout_marginRight="@dimen/sixteenIntuit"
     android:orientation="vertical"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="@dimen/eightIntuit">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#40AAAAAA"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:paddingTop="@dimen/eightIntuit"
+        android:paddingBottom="@dimen/eightIntuit">
 
         <CheckBox
             android:id="@+id/checkBoxTask"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/checkBoxTask"
             android:orientation="vertical"
-            android:paddingLeft="8dp">
+            android:paddingLeft="@dimen/eightIntuit">
 
             <TextView
                 android:id="@+id/textViewTask"
@@ -35,7 +35,7 @@
                 android:layout_weight="1"
                 android:text="Job"
                 android:textColor="@android:color/black"
-                android:textSize="22sp" />
+                android:textSize="@dimen/twentyTwoIntuit" />
 
             <TextView
                 android:id="@+id/textViewDate"
@@ -44,7 +44,7 @@
                 android:layout_weight="1"
                 android:text="Friday, 24 April 2020"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
+                android:textSize="@dimen/sixteenIntuit" />
         </LinearLayout>
 
     </RelativeLayout>
