@@ -154,17 +154,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 for(int i = 0; i < tasks.size(); i ++) {
 
-                    if(tasks.get(i).getCategory().equals(JOB_CATEGORY)) {
+                    String category = tasks.get(i).getCategory();
 
-                        allJobTasks.add(tasks.get(i));
+                    switch (category) {
+                        case JOB_CATEGORY:
+                            allJobTasks.add(tasks.get(i));
+                            break;
 
-                    } else if (tasks.get(i).getCategory().equals(SHOPPING_CATEGORY)) {
+                        case SHOPPING_CATEGORY:
+                            allShoppingTasks.add(tasks.get(i));
+                            break;
 
-                        allShoppingTasks.add(tasks.get(i));
+                        case OTHER_CATEGORY:
+                            allOtherTasks.add(tasks.get(i));
+                            break;
 
-                    } else if(tasks.get(i).getCategory().equals(OTHER_CATEGORY)) {
-
-                        allOtherTasks.add(tasks.get(i));
                     }
                 }
 
