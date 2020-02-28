@@ -40,6 +40,8 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
     public static final String DATE_KEY = "Date";
     public static final String CATEGORY_KEY = "Category";
 
+    private static final String TITLE = "Add a new task";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +72,7 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
 
         if (getSupportActionBar() != null) {
 
-            getSupportActionBar().setTitle("Add a new task");
+            getSupportActionBar().setTitle(TITLE);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -88,7 +90,6 @@ public class AddTaskActivity extends AppCompatActivity implements View.OnClickLi
         data.putExtra(CATEGORY_KEY, category);
 
         setResult(RESULT_OK, data);
-
         finish();
     }
 

@@ -16,7 +16,6 @@ import static com.example.view.todo.data.TaskDatabase.getInstance;
 public class LocalRepository {
 
     private TaskDao taskDao;
-
     private LiveData<List<Task>> allTasks;
 
     public LocalRepository(Application application) {
@@ -24,7 +23,6 @@ public class LocalRepository {
         TaskDatabase taskDatabase = getInstance(application);
 
         taskDao = taskDatabase.taskDao();
-
         allTasks = taskDao.getAllTasks();
     }
 
